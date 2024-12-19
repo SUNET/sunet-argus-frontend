@@ -67,7 +67,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     for index, tag in enumerate(tags):
         print(f"{index+1}. {tag}")
 
-    tag_number = input("Choose the tag you want to build:")
+    tag_number = input("Choose the tag you want to build: ")
     tag_number = int(tag_number)
     assert (
         tag_number >= 1 and tag_number <= len_tags + 1
@@ -75,8 +75,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     print(f"You have choosed: {tag_number}, {tags[tag_number-1]}")
     git_commit = get_commit()[:8]
     context['branch_name'] = tags[tag_number-1]
-    context['docker_tag_name'] = f"{tags[tag_number-1]}_sunet-{git_commit}"
-    
+    context['docker_tag_name'] = f"{tags[tag_number-1]}_sunet-" + "${GIT_COMMIT}"
     
     # Todo. change .jenkins.yaml with the new version
     template = Template(get_template(filename="templates/.jenkins.yaml.jinja"))
@@ -92,6 +91,14 @@ with tempfile.TemporaryDirectory() as temp_dir:
     file_to_remplace = ".jenkins.yaml"
     with open(file_to_remplace, "w") as output_file:
         output_file.write(rendered_yaml)
+    
+    # Prompt the user for a commit message
+    commit_message = input("Enter the commit message: ")
+
+    print("\tCommitting changes...")
+    # Commit the changes
+    subprocess.run('git add .jenkins.yaml', shell=True, check=True)
+    subprocess.run(f'git commit -m "{commit_message}"', shell=True, check=True)
         
     print("pushing changes to repository...")
     subprocess.run("git push -u origin main", shell=True, check=True)

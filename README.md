@@ -28,7 +28,6 @@ chmod +x bump-tag.py
 ```
 
 This script simplifies the process by determining the appropriate tag to use and applying the changes to the `.jenkins.yaml` file and commiting the code.
-The python code should be used only after a successful commit
 
 ## Notes
 
