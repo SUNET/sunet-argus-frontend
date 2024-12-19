@@ -15,7 +15,7 @@ docker_tags:
 - "v1.14.1_sunet-${GIT_COMMIT}"
 docker_no_cache: true
 docker_force_tag: true
-docker_skip_tag_as_latest: true
+docker_skip_tag_as_latest: false
 docker_build_args: |
   BRANCH_NAME=v1.14.1
   REPO_URL=https://github.com/Uninett/Argus-frontend.git
