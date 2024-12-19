@@ -1,0 +1,24 @@
+
+# Created by https://www.gitignore.io/api/react,macos,windows,pycharm+all
+# Edit at https://www.gitignore.io/?templates=react,macos,windows,pycharm+all
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+.commit_version.py
+commit_version.py
